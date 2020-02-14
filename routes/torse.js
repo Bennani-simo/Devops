@@ -33,7 +33,7 @@ router.put('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
     res.setHeader('Content-type', 'application/json');
 
-    let idtorse = req.params.id;
+    let idTorse = req.params.id;
     delete torse[idTorse];
 
     return res.status(200).json({'success': true, 'message': 'Le torse a bien été supprimer.' });

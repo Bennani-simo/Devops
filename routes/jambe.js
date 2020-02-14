@@ -2,10 +2,10 @@ const express = require('express'),
       router = express.Router();
 
 
-let jambes = {};
+let jambe = {};
 let id = 0;
 
-/* Récupérer toutes les jambes */
+/* Récupérer toutes les jambe */
 router.get('/', async(req, res) => {
     res.setHeader('Content-type', 'application/json');
     return res.status(200).json({'success': true, 'jambe': jambe});
@@ -33,7 +33,7 @@ router.put('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
     res.setHeader('Content-type', 'application/json');
 
-    let idCape = req.params.id;
+    let idJambe = req.params.id;
     delete jambe[idJambe];
 
     return res.status(200).json({'success': true, 'message': 'La jambe a bien été supprimer.' });

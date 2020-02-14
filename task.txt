@@ -1,0 +1,31 @@
+dans le front on a un docker file qui est pris tt simplement sur la documentation
+ajouter ngnix qui vas servir le front
+sur la parti api on a un dockerfile qui est pros sur la parti js
+----------------------------
+dockercompose avec mongos / ngnix 
+
+
+
+interface home avec 6buttons
+armure / casque / torse / cape / bras / jambes 
+
+
+on vas sur armure :
+on a la possibiliter de :
+
+-------------------------------------
+on genere la cle de lautoriter de certif 
+une cle pour le domaine 
+route ci
+certificate
+nom de domaine "api. "
+-----------------------------3eme groupe
+
+apllication avec un back en node et front en angular
+chaque partie des armure sont des composant angular
+on peut crée modufier et surprimer dans chaque partie de larmure
+
+coté back :
+fichier avec nos route
+ 
+nom de domaine api 
