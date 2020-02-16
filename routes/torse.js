@@ -1,42 +1,62 @@
 const express = require('express'),
-      router = express.Router();
+    router = express.Router();
 
 
 let torse = {};
 let id = 0;
 
-/* Récupérer tous les torses */
-router.get('/', async(req, res) => {
+
+// Récupérer tous les torse 
+async function get(req, res) {
     res.setHeader('Content-type', 'application/json');
-    return res.status(200).json({'success': true, 'torse': torse});
-});
+    return res.status(200).json({ 'success': true, 'torse': torse });
 
-/* Ajouter un nouveau torse */
-router.post('/', async(req, res) => {
+}
+
+
+
+// Récupérer un torse par ID
+async function getById(req, res) {
     res.setHeader('Content-type', 'application/json');
-    
-    torse[id] = req.body;
-    id++;
+    let idtorse = req.params.id;
+    torse[idtorse] = req.body;
+    return res.status(200).json({ 'success': true, 'torse': torse[idtorse] });
 
-    return res.status(200).json({'success': true, 'torse': torse[id]});
-});
+}
 
-/* Modifier le torse :id */
-router.put('/:id', async(req, res) => {
+
+
+// async function qui poste un torse
+async function post(req, res) {
     res.setHeader('Content-type', 'application/json');
-    let idTorse = req.params.id;
-    bras[idTorse] = req.body;
-    return res.status(200).json({'success': true, 'torse': torses[idTorse]});
-});
+    torse[id++] = req.body;
 
-/* Supprimer le torse :id */
-router.delete('/:id', async(req, res) => {
+    return res.status(200).json({ 'success': true, 'torse': torse[id] });
+}
+
+
+
+// put 
+async function put(req, res) {
     res.setHeader('Content-type', 'application/json');
+    let idtorse = req.params.id;
+    torse[idtorse] = req.body;
+    return res.status(200).json({ 'success': true, 'torse': torse[idtorse] });
 
-    let idTorse = req.params.id;
-    delete torse[idTorse];
+}
 
-    return res.status(200).json({'success': true, 'message': 'Le torse a bien été supprimer.' });
-});
 
-module.exports = router;
+
+//delete
+async function deleteById(req, res) {
+    res.setHeader('Content-type', 'application/json');
+    let idtorse = req.params.id;
+    delete torse[idtorse];
+    return res.status(200).json({ 'success': true, 'message': 'Le torse a bien été supprimer.' });
+
+}
+
+
+
+
+module.exports = { router, get, post, put, deleteById, getById }

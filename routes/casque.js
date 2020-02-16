@@ -1,42 +1,60 @@
 const express = require('express'),
-      router = express.Router();
+    router = express.Router();
 
 
 let casque = {};
 let id = 0;
 
-/* Récupérer tous les casques */
-router.get('/', async(req, res) => {
+
+// Récupérer tous les casques 
+async function get(req, res) {
     res.setHeader('Content-type', 'application/json');
-    return res.status(200).json({'success': true, 'casque': casque});
-});
+    return res.status(200).json({ 'success': true, 'casque': casque });
 
-/* Ajouter un nouveau casque */
-router.post('/', async(req, res) => {
+}
+
+
+
+// Récupérer un casque par id
+async function getById(req, res) {
     res.setHeader('Content-type', 'application/json');
-    
-    casque[id] = req.body;
-    id++;
+    let idcasque = req.params.id;
+    casque[idcasque] = req.body;
+    return res.status(200).json({ 'success': true, 'casque': casque[idcasque] });
 
-    return res.status(200).json({'success': true, 'casque': casque[id]});
-});
+}
 
-/* Modifier le casque :id */
-router.put('/:id', async(req, res) => {
+
+
+// async function qui poste un casque
+async function post(req, res) {
     res.setHeader('Content-type', 'application/json');
-    let idCasque = req.params.id;
-    bras[idCasque] = req.body;
-    return res.status(200).json({'success': true, 'casque': casque[idCasque]});
-});
+    casque[id++] = req.body;
 
-/* Supprimer le casque :id */
-router.delete('/:id', async(req, res) => {
+    return res.status(200).json({ 'success': true, 'casque': casque[id] });
+}
+
+
+
+// put par ID
+async function put(req, res) {
     res.setHeader('Content-type', 'application/json');
+    let idcasque = req.params.id;
+    casque[idcasque] = req.body;
+    return res.status(200).json({ 'success': true, 'casque': casque[idcasque] });
 
-    let idCasque = req.params.id;
-    delete casque[idCasque];
+}
 
-    return res.status(200).json({'success': true, 'message': 'Le casque a bien été supprimer.' });
-});
 
-module.exports = router;
+
+//delete par ID
+async function deleteById(req, res) {
+    res.setHeader('Content-type', 'application/json');
+    let idcasque = req.params.id;
+    delete casque[idcasque];
+    return res.status(200).json({ 'success': true, 'message': 'Le casque a bien été supprimer.' });
+
+}
+
+
+module.exports = { router, get, post, put, deleteById, getById }
